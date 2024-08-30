@@ -21,24 +21,24 @@ class Solution {
 
             if (visited[i] == 0) {
                 count++;
-            }
 
-            while (!queue.isEmpty()) {
-                int currentCity = queue.poll();
+                while (!queue.isEmpty()) {
+                    int currentCity = queue.poll();
 
-                if (visited[currentCity] == 1) {
-                    continue;
-                }
+                    if (visited[currentCity] == 1) {
+                        continue;
+                    }
 
-                visited[currentCity] = 1;
+                    visited[currentCity] = 1;
 
-                for (int j = 0; j < isConnected[currentCity].length; j++) {
-                    if (isConnected[currentCity][j] == 1 && visited[j] == 0) {
-                        queue.add(j);
+                    for (int j = 0; j < isConnected[currentCity].length; j++) {
+                        if (isConnected[currentCity][j] == 1 && visited[j] == 0) {
+                            queue.add(j);
+                        }
                     }
                 }
-
             }
+
         }
 
         return count;

@@ -24,35 +24,18 @@ class Solution {
             temp = temp.next;
         }
 
-        if (count == 0) {
-            return new ListNode[k];
-        }
-
         int size = count / k;
         int remainder = count % k;
         ListNode[] ans = new ListNode[k];
-        int idx = 0;
         ListNode curr = head;
-        while (idx < k) {
-            ans[idx] = curr;
-            int partSize = size + (remainder > 0 ? 1 : 0);
-            remainder--;
-
-            for (int i = 0; i < partSize - 1; i++) {
-                if (curr != null) {
-                    curr = curr.next;
-                }
+        for (int i = 0; i < k && head != null; i++) {
+            ans[i] = head;
+            for (int j = 0; j < (size + (i < remainder ? 1 : 0)) - 1; j++) {
+                head = head.next;
             }
-
-            if (curr.next != null) {
-                ListNode next = curr.next;
-                curr.next = null;
-                curr = next;
-            } else {
-                break;
-            }
-
-            idx++;
+            curr = head.next;
+            head.next = null;
+            head = curr;
         }
 
         return ans;

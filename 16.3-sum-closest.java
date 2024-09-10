@@ -7,25 +7,25 @@
 // @lc code=start
 class Solution {
     public int threeSumClosest(int[] nums, int target) {
-        int ans = nums[0] + nums[1] + nums[2];
-        int min = Math.abs(ans - target);
-        // sort the array
+        int min = Integer.MAX_VALUE;
+        int ans = 0;
         Arrays.sort(nums);
-        for (int i = 0; i < nums.length - 2; i++) {
-            int l = i + 1, r = nums.length - 1;
-            while (l < r) {
-                int sum = nums[i] + nums[l] + nums[r];
+        for (int i = 0; i < nums.length - 1; i++) {
+            int j = i + 1;
+            int k = nums.length - 1;
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
                 int diff = Math.abs(sum - target);
                 if (diff < min) {
                     min = diff;
                     ans = sum;
                 }
                 if (sum < target) {
-                    l++;
+                    j++;
                 } else if (sum > target) {
-                    r--;
+                    k--;
                 } else {
-                    return sum;
+                    return target;
                 }
             }
         }
